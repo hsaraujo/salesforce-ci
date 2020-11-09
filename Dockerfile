@@ -15,10 +15,10 @@ RUN apk add openjdk8
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 # Set up Salesforce ANT Migration Tool
 RUN apk add apache-ant
-RUN wget https://gs0.salesforce.com/dwnld/SfdcAnt/salesforce_ant_46.0.zip
+RUN wget https://gs0.salesforce.com/dwnld/SfdcAnt/salesforce_ant_50.0.zip
 ENV ANT_HOME /usr/share/java/apache-ant
 ENV PATH $PATH:$ANT_HOME/bin
-RUN unzip salesforce_ant_46.0.zip -d ./salesforce_ant
+RUN unzip salesforce_ant_50.0.zip -d ./salesforce_ant
 RUN cp ./salesforce_ant/ant-salesforce.jar $ANT_HOME/lib/
 # Set up PMD
 ENV PMD_VERSION=6.29.0
