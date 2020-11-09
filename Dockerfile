@@ -9,6 +9,7 @@ RUN apk add --no-cache wget
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
 RUN npm install -g sfdx-cli
+RUN npm install -g  json-bumper
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
 # Set up Java 8
 RUN apk add openjdk8
