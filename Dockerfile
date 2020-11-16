@@ -6,10 +6,11 @@ RUN apk add openssh
 RUN apk add git
 RUN apk add zip
 RUN apk add --no-cache wget
+RUN apk add jq
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
 RUN npm install -g sfdx-cli
-RUN npm install -g  json-bumper
+RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
 # Set up Java 8
 RUN apk add openjdk8
