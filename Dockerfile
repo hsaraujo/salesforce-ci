@@ -11,6 +11,7 @@ RUN apk add xmlstarlet
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
 RUN npm install -g sfdx-cli
+RUN npm install -g sfdx-packager
 RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
 RUN echo 'y' | sfdx plugins:install sfpowerkit
