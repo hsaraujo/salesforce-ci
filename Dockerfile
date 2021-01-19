@@ -61,8 +61,9 @@ ENV CHROME_BIN=/usr/bin/chromium-browser
 ENV CHROME_PATH=/usr/lib/chromium/
 ENV PROVAR_HOME=/develop/ProvarHome
 
+RUN mkdir -p $PROVAR_HOME
 RUN curl -O https://download.provartesting.com/latest/Provar_ANT_latest.zip
-RUN unzip -o Provar_ANT_latest.zip -d /develop/ProvarHome
+RUN unzip -o Provar_ANT_latest.zip -d $PROVAR_HOME
 # Creates xvfb-run script because it doesn't exist in Alpine Distribution
 RUN curl -o /usr/bin/xvfb-run https://raw.githubusercontent.com/hsaraujo/salesforce-ci/main/xvfb-run
 RUN chmod +x /usr/bin/xvfb-run
