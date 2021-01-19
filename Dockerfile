@@ -56,7 +56,7 @@ RUN apk -U --no-cache \
     ttf-freefont \
     grep \ 
     udev \
-    && apk del --purge --force linux-headers binutils-gold gnupg zlib-dev libc-utils \
+    && apk del --purge --force linux-headers zlib-dev libc-utils \
     && rm -rf /var/lib/apt/lists/* \
     /var/cache/apk/* \
     /usr/share/man \
