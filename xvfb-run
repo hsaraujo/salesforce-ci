@@ -2,6 +2,9 @@
 
 # $Id: xvfb-run 2027 2004-11-16 14:54:16Z branden $
 
+# This file is just a copy of
+# https://github.com/cjpetrus/alpine_webkit2png/blob/master/xvfb-run
+
 # This script starts an instance of Xvfb, the "fake" X server, runs a command
 # with that server available, and kills the X server when done.  The return
 # value of the command becomes the return value of this script, except in cases
