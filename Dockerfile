@@ -10,10 +10,9 @@ RUN apk add jq
 RUN apk add xmlstarlet
 RUN apk add python3
 RUN apk add py3-pip
-RUN pip install requests
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
-RUN npm install -g sfdx-cli
+RUN npm install -g sfdx-cli@7.89.2
 RUN npm install -g sfdx-packager
 RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
