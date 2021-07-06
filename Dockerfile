@@ -12,7 +12,7 @@ RUN apk add python3
 RUN apk add py3-pip
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
-RUN npm install -g sfdx-cli@7.82.1-0
+RUN npm install -g sfdx-cli
 RUN npm install -g sfdx-packager
 RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
