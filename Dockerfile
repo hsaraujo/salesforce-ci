@@ -10,7 +10,6 @@ RUN apk add jq
 RUN apk add xmlstarlet
 RUN apk add python3
 RUN apk add py3-pip
-RUN pip install requests
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
 RUN npm install -g sfdx-cli
@@ -40,3 +39,37 @@ RUN curl -sLO https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_
     echo '/pmd-bin-6.29.0/bin/run.sh cpd "$@"' >> /usr/local/bin/cpd && \
     chmod +x /usr/local/bin/pmd && \
     chmod +x /usr/local/bin/cpd
+
+# PROVAR SETUP 
+
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+# install chromium
+RUN apk -U --no-cache \
+    --allow-untrusted add \
+    zlib-dev \
+    chromium \
+    xvfb \
+    wait4ports \
+    xorg-server \
+    dbus \
+    ttf-freefont \
+    grep \ 
+    udev
+
+ENV CHROME_BIN=/usr/bin/chromium-browser
+ENV CHROME_PATH=/usr/lib/chromium/
+ENV PROVAR_HOME=/develop/ProvarHome
+
+RUN mkdir -p $PROVAR_HOME
+RUN curl -O https://download.provartesting.com/latest/Provar_ANT_latest.zip
+RUN unzip -o Provar_ANT_latest.zip -d $PROVAR_HOME
+# Creates xvfb-run script because it doesn't exist in Alpine Distribution
+RUN curl -o /usr/bin/xvfb-run https://raw.githubusercontent.com/hsaraujo/salesforce-ci/main/xvfb-run
+RUN chmod +x /usr/bin/xvfb-run
+
+RUN apk add chromium-chromedriver
+ENV ANT_OPTS=-Dcom.provar.chromedriver.versioningSupported=true
+RUN cp /usr/bin/chromedriver $PROVAR_HOME/lib/com.provar.core.lib.selenium_3.4.0/drivers/linux/
