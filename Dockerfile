@@ -17,7 +17,6 @@ RUN npm install -g sfdx-packager
 RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
 RUN echo 'y' | sfdx plugins:install sfpowerkit
-RUN echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
 # Set up Java 8
 RUN apk add openjdk8
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
