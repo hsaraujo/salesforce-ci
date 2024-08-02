@@ -12,19 +12,22 @@ RUN apk add python3
 RUN apk add py3-pip
 RUN npm install -g sf-packager
 RUN npm install -g jsforce-metadata-tools
-RUN npm install -g sfdx-cli@7.166.1
+RUN npm install -g sfdx-cli@7.209.6
 RUN npm install -g sfdx-packager
 RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
 RUN echo 'y' | sfdx plugins:install sfpowerkit
+RUN echo "Y" | sfdx plugins:install @salesforce/sfdx-scanner
+RUN echo "Y" | sfdx plugins:install sfdx-git-delta
+
 # Set up Java 8
 RUN apk add openjdk8
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV JAVA_HOME="/usr/lib/jvm/java-1.8-openjdk"
 # Set up Salesforce ANT Migration Tool
 RUN apk add apache-ant
 RUN wget https://gs0.salesforce.com/dwnld/SfdcAnt/salesforce_ant_50.0.zip
-ENV ANT_HOME /usr/share/java/apache-ant
-ENV PATH $PATH:$ANT_HOME/bin
+ENV ANT_HOME="/usr/share/java/apache-ant"
+ENV PATH="$PATH:$ANT_HOME/bin"
 RUN unzip salesforce_ant_50.0.zip -d ./salesforce_ant
 RUN cp ./salesforce_ant/ant-salesforce.jar $ANT_HOME/lib/
 # Set up PMD
