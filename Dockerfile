@@ -20,8 +20,8 @@ RUN echo "Y" | sfdx plugins:install @salesforce/sfdx-scanner
 RUN echo "Y" | sfdx plugins:install sfdx-git-delta
 
 # Set up Java 8
-RUN apk add openjdk8
-ENV JAVA_HOME="/usr/lib/jvm/java-1.8-openjdk"
+RUN apk add openjdk11
+ENV JAVA_HOME="/usr/lib/jvm/java-1.11-openjdk"
 # Set up PMD
 ENV PMD_VERSION=6.49.0
 RUN apk add curl
