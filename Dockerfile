@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:16-alpine
 LABEL maintainer="Heitor Araujo <heitor.saraujo@gmail.com>"
 RUN apk update
 RUN apk add bash
