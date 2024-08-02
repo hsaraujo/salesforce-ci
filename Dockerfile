@@ -24,7 +24,7 @@ ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
 # Set up Java 8
 RUN apk add openjdk11
-ENV JAVA_HOME="/usr/lib/jvm/java-1.11-openjdk"
+# ENV JAVA_HOME="/usr/lib/jvm/java-1.11-openjdk"
 # Set up PMD
 ENV PMD_VERSION=6.49.0
 RUN apk add curl
