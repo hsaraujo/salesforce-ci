@@ -16,20 +16,12 @@ RUN npm install -g sfdx-cli@7.209.6
 RUN npm install -g sfdx-packager
 RUN npm install -g semver
 RUN echo "Y" | sfdx plugins:install sfdx-git-packager
-RUN echo 'y' | sfdx plugins:install sfpowerkit
 RUN echo "Y" | sfdx plugins:install @salesforce/sfdx-scanner
 RUN echo "Y" | sfdx plugins:install sfdx-git-delta
 
 # Set up Java 8
 RUN apk add openjdk8
 ENV JAVA_HOME="/usr/lib/jvm/java-1.8-openjdk"
-# Set up Salesforce ANT Migration Tool
-RUN apk add apache-ant
-RUN wget https://gs0.salesforce.com/dwnld/SfdcAnt/salesforce_ant_50.0.zip
-ENV ANT_HOME="/usr/share/java/apache-ant"
-ENV PATH="$PATH:$ANT_HOME/bin"
-RUN unzip salesforce_ant_50.0.zip -d ./salesforce_ant
-RUN cp ./salesforce_ant/ant-salesforce.jar $ANT_HOME/lib/
 # Set up PMD
 ENV PMD_VERSION=6.49.0
 RUN apk add curl
@@ -42,37 +34,3 @@ RUN curl -sLO https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_
     echo '/pmd-bin-${PMD_VERSION}/bin/run.sh cpd "$@"' >> /usr/local/bin/cpd && \
     chmod +x /usr/local/bin/pmd && \
     chmod +x /usr/local/bin/cpd
-
-# PROVAR SETUP 
-
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-
-# install chromium
-RUN apk -U --no-cache \
-    --allow-untrusted add \
-    zlib-dev \
-    chromium \
-    xvfb \
-    wait4ports \
-    xorg-server \
-    dbus \
-    ttf-freefont \
-    grep \ 
-    udev
-
-ENV CHROME_BIN=/usr/bin/chromium-browser
-ENV CHROME_PATH=/usr/lib/chromium/
-ENV PROVAR_HOME=/develop/ProvarHome
-
-RUN mkdir -p $PROVAR_HOME
-RUN curl -O https://download.provartesting.com/latest/Provar_ANT_latest.zip
-RUN unzip -o Provar_ANT_latest.zip -d $PROVAR_HOME
-# Creates xvfb-run script because it doesn't exist in Alpine Distribution
-RUN curl -o /usr/bin/xvfb-run https://raw.githubusercontent.com/hsaraujo/salesforce-ci/main/xvfb-run
-RUN chmod +x /usr/bin/xvfb-run
-
-RUN apk add chromium-chromedriver
-ENV ANT_OPTS=-Dcom.provar.chromedriver.versioningSupported=true
-RUN cp /usr/bin/chromedriver $PROVAR_HOME/lib/com.provar.core.lib.selenium_3.4.0/drivers/linux/
