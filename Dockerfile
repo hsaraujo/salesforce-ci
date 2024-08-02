@@ -19,6 +19,9 @@ RUN echo "Y" | sfdx plugins:install sfdx-git-packager
 RUN echo "Y" | sfdx plugins:install @salesforce/sfdx-scanner
 RUN echo "Y" | sfdx plugins:install sfdx-git-delta
 
+# Allow execution of pip install commmands
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
+
 # Set up Java 8
 RUN apk add openjdk11
 ENV JAVA_HOME="/usr/lib/jvm/java-1.11-openjdk"
