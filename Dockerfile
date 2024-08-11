@@ -17,6 +17,9 @@ RUN echo "Y" | sf plugins install sfdx-git-delta
 
 # Allow execution of pip install commmands
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
+RUN pip install requests
+RUN pip install tabulate
+RUN pip install tzdata
 
 # Set up Java 8
 RUN apk add openjdk11
