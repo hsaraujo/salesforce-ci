@@ -10,7 +10,7 @@ RUN apk add jq
 RUN apk add xmlstarlet
 RUN apk add python3
 RUN apk add py3-pip
-RUN apk add semver
+RUN npm install semver --global
 RUN npm install @salesforce/cli --global
 RUN echo "Y" | sf plugins:install @salesforce/sfdx-scanner
 RUN echo "Y" | sf plugins install sfdx-git-delta
