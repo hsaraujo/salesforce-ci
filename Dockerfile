@@ -12,7 +12,7 @@ RUN apk add python3
 RUN apk add py3-pip
 RUN npm install semver --global
 RUN npm install @salesforce/cli --global
-RUN echo "Y" | sf plugins:install @salesforce/sfdx-scanner
+RUN echo "Y" | sf plugins install code-analyzer
 RUN echo "Y" | sf plugins install sfdx-git-delta
 
 # Allow execution of pip install commmands
