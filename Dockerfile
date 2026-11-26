@@ -1,6 +1,7 @@
 FROM node:22-alpine
 LABEL maintainer="Heitor Araujo <heitor.saraujo@gmail.com>"
 RUN apk update
+RUN apk add --no-cache coreutils
 RUN apk add bash
 RUN apk add openssh
 RUN apk add git
