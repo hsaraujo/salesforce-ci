@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:22-slim
 LABEL maintainer="Heitor Araujo <heitor.saraujo@gmail.com>"
 RUN apk update
 RUN apk add bash
@@ -12,8 +12,8 @@ RUN apk add python3
 RUN apk add py3-pip
 RUN npm install semver --global
 RUN npm install @salesforce/cli --global
-RUN echo "Y" | sf plugins install code-analyzer
-RUN echo "Y" | sf plugins install sfdx-git-delta
+RUN sf plugins install code-analyzer --force
+RUN sf plugins install sfdx-git-delta --force
 
 # Allow execution of pip install commmands
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
