@@ -14,7 +14,7 @@ RUN apk add py3-pip
 RUN npm install semver --global
 RUN npm install @salesforce/cli --global
 RUN sf plugins install code-analyzer --force
-RUN sf plugins install sfdx-git-delta --force
+RUN echo "Y" | sf plugins install sfdx-git-delta
 
 # Allow execution of pip install commmands
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
